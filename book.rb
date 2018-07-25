@@ -2,7 +2,7 @@ require "pry"
 
 class Book
   attr_accessor :author, :title, :word_count
-
+# @author
   @@all = []
 
   #   #getter/reader

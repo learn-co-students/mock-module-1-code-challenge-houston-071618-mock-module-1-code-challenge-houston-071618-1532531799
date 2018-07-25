@@ -1,7 +1,7 @@
 require "pry"
 
 class Author
-  attr_accessor :name
+  attr_accessor :name 
   @@all = []
 
   def initialize(name)
@@ -14,21 +14,22 @@ class Author
   end
 
   def books
-    Books.all.select do |book|
-      author.book == self
+    Book.all.select do |book_instance|
+     book_instance.author == self
     end
   end
 
+  #self here is the instance of the author. 
   def write_book(title, word_count)
     Book.new(self, title, word_count)
   end
 
   def total_words
-    books.map do |book|
-      book.word_count.reduce(:+)
+    books.map do |book_instance|
+      book_instance.word_count.reduce(:+)
     end
   end
-
+#use self to refer to the instance. You'll use it to define a class method. Other than that, it'll be the instance.
   def self.most_words
     Author.all.max_by do |author|
       author.total_words
